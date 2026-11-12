@@ -1,0 +1,4 @@
+# BLOCKCAST 백엔드 주소 (배포 주소로 바꿔 주세요)
+server-url: "http://localhost:8080"
+# /blockcast link <코드> 를 입력하면 자동으로 채워집니다. 다른 사람에게 보여주지 마세요.
+token: ""

@@ -1,0 +1,44 @@
+server:
+  port: ${PORT:8080} # 배포 플랫폼이 PORT 를 주면 그 포트로
+
+spring:
+  application:
+    name: livecraft
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5433/livecraft}
+    username: ${DB_USERNAME:livecraft}
+    password: ${DB_PASSWORD:livecraft}
+  jpa:
+    hibernate:
+      # shortcut: 스키마를 엔티티로 자동 갱신. 운영 데이터가 생기면 Flyway 마이그레이션으로 바꾼다.
+      ddl-auto: update
+    open-in-view: false
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+app:
+  # 프론트엔드 주소 (CORS, 결제 성공/실패 리다이렉트)
+  frontend-url: ${FRONTEND_URL:http://localhost:5173}
+  auth:
+    token-ttl-hours: ${AUTH_TOKEN_TTL_HOURS:72}
+    # 심사용 "테스트 계정으로 바로 로그인" 버튼 허용 여부
+    test-login-enabled: ${TEST_LOGIN_ENABLED:true}
+    test-password: ${TEST_ACCOUNT_PASSWORD:test1234!}
+  livekit:
+    url: ${LIVEKIT_URL:ws://localhost:7880}
+    api-url: ${LIVEKIT_API_URL:http://localhost:7880}
+    api-key: ${LIVEKIT_API_KEY:devkey}
+    api-secret: ${LIVEKIT_API_SECRET:devsecret_change_me_devsecret_change_me}
+    # 송출자가 나간 뒤 이 시간 안에 돌아오지 않으면 방송을 종료한다 (새로고침 대비)
+    publisher-grace-seconds: 30
+  toss:
+    base-url: https://api.tosspayments.com
+    client-key: ${TOSS_CLIENT_KEY:}
+    secret-key: ${TOSS_SECRET_KEY:}
+  recording:
+    dir: ${RECORDING_DIR:./data/recordings}
+  plugin:
+    ack-timeout-seconds: 30
+    max-attempts: 5

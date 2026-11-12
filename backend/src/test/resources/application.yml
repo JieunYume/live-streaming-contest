@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+
+app:
+  frontend-url: http://localhost:5173
+  auth:
+    token-ttl-hours: 1
+    test-login-enabled: true
+    test-password: test1234!
+  livekit:
+    url: ws://localhost:7880
+    api-url: http://localhost:1
+    api-key: testkey
+    api-secret: testsecret_testsecret_testsecret_1234
+    publisher-grace-seconds: 30
+  toss:
+    base-url: http://localhost:1
+    client-key: test_ck_dummy
+    secret-key: test_sk_dummy
+  recording:
+    dir: ./build/test-recordings
+  plugin:
+    ack-timeout-seconds: 30
+    max-attempts: 5

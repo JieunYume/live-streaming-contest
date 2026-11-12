@@ -1,0 +1,27 @@
+# 로컬 개발용: PostgreSQL + LiveKit(개발 모드)
+# 실행: docker compose up -d
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: livecraft
+      POSTGRES_USER: livecraft
+      POSTGRES_PASSWORD: livecraft
+    ports:
+      - "5433:5432" # 5432는 다른 프로젝트와 겹치지 않게 5433으로
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  livekit:
+    image: livekit/livekit-server:latest
+    command: --dev --bind 0.0.0.0
+    environment:
+      # 개발용 키. 운영에서는 LiveKit Cloud 키를 환경변수로 넣는다.
+      LIVEKIT_KEYS: "devkey: devsecret_change_me_devsecret_change_me"
+    ports:
+      - "7880:7880"
+      - "7881:7881"
+      - "7882:7882/udp"
+
+volumes:
+  pgdata:

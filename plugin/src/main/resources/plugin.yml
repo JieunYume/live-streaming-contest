@@ -1,0 +1,14 @@
+name: Blockcast
+version: '${version}'
+main: com.livecraft.plugin.BlockcastPlugin
+api-version: '1.21'
+description: BLOCKCAST 후원 연동 - 후원이 들어오면 게임 안에서 반응을 실행합니다.
+commands:
+  blockcast:
+    description: BLOCKCAST 연동 (link <코드> | status | reconnect)
+    usage: /blockcast link <코드>
+    permission: blockcast.admin
+permissions:
+  blockcast.admin:
+    description: 플랫폼 연동 관리
+    default: op
